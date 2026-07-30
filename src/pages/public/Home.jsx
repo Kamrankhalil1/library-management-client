@@ -38,18 +38,18 @@ function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 text-white">
         {/* Glow Effects */}
-        <div className="absolute -left-20 -top-20 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="absolute -bottom-20 -right-20 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="absolute -left-20 -top-20 h-96 w-96 rounded-full bg-blue-500/20 blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -right-20 h-96 w-96 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none" />
 
-        <div className="relative mx-auto flex min-h-[85vh] max-w-7xl flex-col items-center justify-center px-6 py-24 text-center">
+        <div className="relative mx-auto flex min-h-[85vh] max-w-7xl flex-col items-center justify-center px-6 py-28 text-center">
           {/* Badge */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur-md ring-1 ring-white/20">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
             Full-Stack Library Management System
           </div>
 
-          <div className="mb-8 flex h-20 w-20 items-center justify-center rounded-3xl bg-blue-600/30 text-blue-400 ring-1 ring-white/20 backdrop-blur-xl">
-            <FaBookOpen className="text-5xl" />
+          <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-blue-600/30 text-blue-400 ring-1 ring-white/20 backdrop-blur-xl">
+            <FaBookOpen className="text-4xl" />
           </div>
 
           <h1 className="mb-6 max-w-4xl text-4xl font-black tracking-tight sm:text-6xl md:text-7xl">
@@ -96,47 +96,55 @@ function Home() {
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Card 1 */}
-          <div className="group rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-blue-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-950/50 dark:text-blue-400">
-              <FaBookOpen className="text-2xl" />
+          <div className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+            <div>
+              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-colors group-hover:bg-blue-600 group-hover:text-white dark:bg-blue-950/50 dark:text-blue-400">
+                <FaBookOpen className="text-xl" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold">Book Catalog</h3>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Organize, add, edit, and track book availability across categories seamlessly.
+              </p>
             </div>
-            <h3 className="mb-3 text-xl font-bold">Book Catalog</h3>
-            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Organize, add, edit, and track book availability across categories seamlessly.
-            </p>
           </div>
 
           {/* Card 2 */}
-          <div className="group rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-emerald-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950/50 dark:text-emerald-400">
-              <FaUsers className="text-2xl" />
+          <div className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+            <div>
+              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white dark:bg-emerald-950/50 dark:text-emerald-400">
+                <FaUsers className="text-xl" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold">Member Control</h3>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Manage member registrations, contact records, and active memberships effortlessly.
+              </p>
             </div>
-            <h3 className="mb-3 text-xl font-bold">Member Control</h3>
-            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Manage member registrations, contact records, and active memberships effortlessly.
-            </p>
           </div>
 
           {/* Card 3 */}
-          <div className="group rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-amber-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-amber-50 text-amber-600 transition-colors group-hover:bg-amber-600 group-hover:text-white dark:bg-amber-950/50 dark:text-amber-400">
-              <FaExchangeAlt className="text-2xl" />
+          <div className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+            <div>
+              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 transition-colors group-hover:bg-amber-600 group-hover:text-white dark:bg-amber-950/50 dark:text-amber-400">
+                <FaExchangeAlt className="text-xl" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold">Borrow & Return</h3>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Track active loans, return dates, and automated status updates with zero friction.
+              </p>
             </div>
-            <h3 className="mb-3 text-xl font-bold">Borrow & Return</h3>
-            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Track active loans, return dates, and automated status updates with zero friction.
-            </p>
           </div>
 
           {/* Card 4 */}
-          <div className="group rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:border-purple-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
-            <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-xl bg-purple-50 text-purple-600 transition-colors group-hover:bg-purple-600 group-hover:text-white dark:bg-purple-950/50 dark:text-purple-400">
-              <FaChartBar className="text-2xl" />
+          <div className="group flex flex-col justify-between rounded-2xl border border-slate-200/80 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-purple-500/50 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+            <div>
+              <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-purple-50 text-purple-600 transition-colors group-hover:bg-purple-600 group-hover:text-white dark:bg-purple-950/50 dark:text-purple-400">
+                <FaChartBar className="text-xl" />
+              </div>
+              <h3 className="mb-3 text-xl font-bold">Live Analytics</h3>
+              <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                Visualize key stats, library activity logs, and overview metrics in real time.
+              </p>
             </div>
-            <h3 className="mb-3 text-xl font-bold">Live Analytics</h3>
-            <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-              Visualize key stats, library activity logs, and overview metrics in real time.
-            </p>
           </div>
         </div>
       </section>
@@ -145,7 +153,7 @@ function Home() {
       <section className="border-y border-slate-200/80 bg-slate-100/70 py-16 dark:border-slate-800 dark:bg-slate-900/50">
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-6 px-6 md:grid-cols-4">
           <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-900 dark:ring-1 dark:ring-slate-800">
-            <FaBookOpen className="mb-2 text-2xl text-blue-600" />
+            <FaBookOpen className="mb-3 text-xl text-blue-600" />
             <h3 className="text-3xl font-extrabold sm:text-4xl">500+</h3>
             <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
               Books Cataloged
@@ -153,7 +161,7 @@ function Home() {
           </div>
 
           <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-900 dark:ring-1 dark:ring-slate-800">
-            <FaUsers className="mb-2 text-2xl text-emerald-600" />
+            <FaUsers className="mb-3 text-xl text-emerald-600" />
             <h3 className="text-3xl font-extrabold sm:text-4xl">100+</h3>
             <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
               Active Members
@@ -161,7 +169,7 @@ function Home() {
           </div>
 
           <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-900 dark:ring-1 dark:ring-slate-800">
-            <FaCheckCircle className="mb-2 text-2xl text-amber-500" />
+            <FaCheckCircle className="mb-3 text-xl text-amber-500" />
             <h3 className="text-3xl font-extrabold sm:text-4xl">1000+</h3>
             <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
               Borrows Completed
@@ -169,7 +177,7 @@ function Home() {
           </div>
 
           <div className="flex flex-col items-center rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-900 dark:ring-1 dark:ring-slate-800">
-            <FaClock className="mb-2 text-2xl text-purple-600" />
+            <FaClock className="mb-3 text-xl text-purple-600" />
             <h3 className="text-3xl font-extrabold sm:text-4xl">24/7</h3>
             <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-slate-500">
               System Availability
