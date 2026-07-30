@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./token";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://library-management-api-1kmo.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
