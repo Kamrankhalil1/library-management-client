@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken } from "./token";
 
 const axiosInstance = axios.create({
-  baseURL: "https://library-management-api-1kmo.onrender.com/api",
+  baseURL: import.meta.env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
