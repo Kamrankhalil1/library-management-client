@@ -3,114 +3,128 @@ import {
   FaLinkedin,
   FaReact,
   FaNodeJs,
+  FaBookOpen,
+  FaHeart,
 } from "react-icons/fa";
-
-import { SiExpress, SiMongodb } from "react-icons/si";
+import { SiExpress, SiMongodb, SiTailwindcss } from "react-icons/si";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const socialLinks = [
+    {
+      name: "GitHub",
+      url: "https://github.com/Kamrankhalil1/",
+      icon: <FaGithub />,
+      color:
+        "hover:bg-slate-900 hover:text-white dark:hover:bg-white dark:hover:text-slate-900",
+    },
+    {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/kamran-khalil-950963266/",
+      icon: <FaLinkedin />,
+      color: "hover:bg-[#0A66C2] hover:text-white",
+    },
+  ];
+
+  const techStack = [
+    { name: "React", icon: <FaReact className="text-cyan-400" /> },
+    { name: "Node.js", icon: <FaNodeJs className="text-emerald-500" /> },
+    { name: "Express", icon: <SiExpress className="text-slate-700 dark:text-slate-200" /> },
+    { name: "MongoDB", icon: <SiMongodb className="text-green-500" /> },
+    { name: "Tailwind CSS", icon: <SiTailwindcss className="text-sky-400" /> },
+  ];
+
   return (
-    <footer className="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+    <footer className="relative border-t border-slate-200/80 bg-white/80 backdrop-blur-md transition-colors duration-300 dark:border-slate-800/80 dark:bg-slate-900/80">
+      {/* Top Accent Line */}
+      <div className="h-1 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-8 py-8 md:flex-row">
+      {/* Main Container */}
+      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-8 text-center sm:text-left md:grid-cols-3 md:items-center">
+          
+          {/* Section 1: Branding & Description */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-center gap-2.5 sm:justify-start">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-600 text-white shadow-md shadow-blue-500/20 dark:bg-blue-500">
+                <FaBookOpen className="text-lg" />
+              </span>
+              <h2 className="text-xl font-bold tracking-tight text-slate-800 dark:text-slate-100">
+                Library System
+              </h2>
+            </div>
+            <p className="mx-auto max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:mx-0">
+              A responsive full-stack platform designed to manage books,
+              members, and borrowing workflows efficiently.
+            </p>
+          </div>
 
-        {/* Left */}
+          {/* Section 2: Tech Stack */}
+          <div className="flex flex-col items-center justify-center">
+            <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              Built With MERN Stack
+            </h3>
+            <div className="flex items-center justify-center gap-4 rounded-full bg-slate-100/80 px-5 py-2.5 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-700/50">
+              {techStack.map((tech) => (
+                <div
+                  key={tech.name}
+                  className="group relative flex items-center justify-center text-2xl transition-transform duration-200 hover:-translate-y-1 hover:scale-110"
+                  title={tech.name}
+                >
+                  {tech.icon}
+                  {/* Tooltip */}
+                  <span className="absolute -top-8 hidden rounded bg-slate-800 px-2 py-0.5 text-[10px] text-white opacity-0 transition-opacity group-hover:block group-hover:opacity-100 dark:bg-slate-700">
+                    {tech.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        <div>
-
-          <h2 className="text-xl font-bold text-slate-800 dark:text-white">
-            📚 Library Management System
-          </h2>
-
-          <p className="mt-2 max-w-md text-sm text-slate-500 dark:text-slate-400">
-            A modern full-stack library management platform built with
-            React, Node.js, Express, and MongoDB.
-          </p>
-
-        </div>
-
-        {/* Center */}
-
-        <div className="text-center">
-
-          <h3 className="mb-3 font-semibold text-slate-700 dark:text-slate-200">
-            Built With
-          </h3>
-
-          <div className="flex justify-center gap-5 text-3xl">
-
-            <FaReact className="text-cyan-500" />
-
-            <FaNodeJs className="text-green-600" />
-
-            <SiExpress className="text-slate-700 dark:text-white" />
-
-            <SiMongodb className="text-green-500" />
-
+          {/* Section 3: Social & Connect */}
+          <div className="flex flex-col items-center space-y-3 sm:items-center md:items-end">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">
+              Connect With Developer
+            </h3>
+            <div className="flex items-center gap-3">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
+                  className={`flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-lg text-slate-600 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-800 dark:text-slate-300 dark:hover:text-white ${link.color}`}
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </div>
           </div>
 
         </div>
-
-        {/* Right */}
-
-        <div className="text-center md:text-right">
-
-          <h3 className="mb-3 font-semibold text-slate-700 dark:text-slate-200">
-            Connect
-          </h3>
-
-          <div className="flex justify-center gap-4 md:justify-end">
-
-            <a
-              href="https://github.com/YOUR_GITHUB_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-slate-100 p-3 text-xl transition hover:scale-110 hover:bg-black hover:text-white dark:bg-slate-800"
-            >
-              <FaGithub />
-            </a>
-
-            <a
-              href="https://linkedin.com/in/YOUR_LINKEDIN_USERNAME"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full bg-slate-100 p-3 text-xl text-blue-600 transition hover:scale-110 hover:bg-blue-600 hover:text-white dark:bg-slate-800"
-            >
-              <FaLinkedin />
-            </a>
-
-          </div>
-
-        </div>
-
       </div>
 
-      {/* Bottom */}
-
-      <div className="border-t border-slate-200 px-8 py-4 dark:border-slate-800">
-
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 text-sm text-slate-500 dark:text-slate-400 md:flex-row">
-
-          <p>
-            © {new Date().getFullYear()} Library Management System.
-            All Rights Reserved.
+      {/* Bottom Bar */}
+      <div className="border-t border-slate-100 bg-slate-50/50 px-4 py-4 dark:border-slate-800/60 dark:bg-slate-950/40">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400 sm:flex-row">
+          
+          <p className="text-center sm:text-left">
+            © {currentYear} <span className="font-medium text-slate-700 dark:text-slate-300">Kamran Khalil</span>. All Rights Reserved.
           </p>
 
-          <div className="flex items-center gap-5">
-
-            <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/40 dark:text-blue-300">
-              Version 1.0.0
+          <div className="flex items-center gap-3">
+            <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-[11px] font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 dark:bg-blue-950/60 dark:text-blue-300 dark:ring-blue-400/20">
+              v1.0.0
             </span>
-
-            <span>
-              Made with ❤️ using React & Node.js
+            <span className="flex items-center gap-1.5">
+              Made with <FaHeart className="text-xs text-red-500" /> by Kamran
             </span>
-
           </div>
 
         </div>
-
       </div>
-
     </footer>
   );
 }
