@@ -201,12 +201,13 @@ function Home() {
             </p>
           </div>
 
+          {/* Social Icons with Increased Size */}
           <div className="flex items-center gap-4 text-slate-600 dark:text-slate-400">
             <a
               href="https://github.com/Kamrankhalil1/"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg bg-slate-100 p-2.5 text-lg transition hover:bg-slate-900 hover:text-white dark:bg-slate-900 dark:hover:bg-slate-800"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-2xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-110 hover:bg-slate-900 hover:text-white dark:bg-slate-900 dark:hover:bg-slate-800"
               aria-label="GitHub"
             >
               <FaGithub />
@@ -215,7 +216,7 @@ function Home() {
               href="https://www.linkedin.com/in/kamran-khalil-950963266/"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg bg-slate-100 p-2.5 text-lg transition hover:bg-[#0A66C2] hover:text-white dark:bg-slate-900 dark:hover:bg-slate-800"
+              className="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-2xl transition-all duration-200 hover:-translate-y-0.5 hover:scale-110 hover:bg-[#0A66C2] hover:text-white dark:bg-slate-900 dark:hover:bg-slate-800"
               aria-label="LinkedIn"
             >
               <FaLinkedin />
