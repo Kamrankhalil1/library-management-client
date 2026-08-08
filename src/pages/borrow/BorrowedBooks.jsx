@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { FaBookReader, FaBookOpen, FaUndo } from "react-icons/fa";
+
 import borrowService from "../../services/borrowService";
+import PageHeader from "../../components/ui/PageHeader";
+import Loader from "../../components/ui/Loader";
+import EmptyState from "../../components/ui/EmptyState";
+import StatusBadge from "../../components/ui/StatusBadge";
+import Spinner from "../../components/ui/Spinner";
 
 function BorrowedBooks() {
   const [borrows, setBorrows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [returningId, setReturningId] = useState(null);
 
-  const fetchBorrowedBooks = async () => {
+const fetchBorrowedBooks = async () => {
     try {
-      setLoading(true);
-
       const response = await borrowService.getMyBorrows();
-
       setBorrows(response.data);
     } catch (error) {
       toast.error(
@@ -24,116 +29,124 @@ function BorrowedBooks() {
 
   const handleReturn = async (borrowId) => {
     try {
+      setReturningId(borrowId);
       await borrowService.returnBook(borrowId);
-
       toast.success("Book returned successfully");
-
       fetchBorrowedBooks();
     } catch (error) {
       toast.error(
         error.response?.data?.message || "Failed to return book"
       );
+    } finally {
+      setReturningId(null);
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
+    // Data fetching on mount is intentional here.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchBorrowedBooks();
   }, []);
 
   if (loading) {
-    return (
-      <h2 className="mt-10 text-center text-xl font-semibold text-slate-800 dark:text-slate-100">
-        Loading borrowed books...
-      </h2>
-    );
+    return <Loader label="Loading borrowed books..." />;
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-slate-800 dark:text-slate-100">
-        My Borrowed Books
-      </h1>
+    <div className="space-y-6 fade-in">
+      <PageHeader
+        title="My Borrowed Books"
+        subtitle="Track your active loans and return statuses"
+        icon={<FaBookReader className="text-2xl" />}
+      />
 
-      <div className="overflow-x-auto rounded-lg bg-white shadow dark:bg-slate-800">
-        <table className="min-w-full">
-          <thead className="bg-slate-200 dark:bg-slate-700">
-            <tr>
-              <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">
-                Book
-              </th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">
-                Borrow Date
-              </th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">
-                Due Date
-              </th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">
-                Status
-              </th>
-              <th className="px-4 py-3 text-left font-semibold text-slate-700 dark:text-slate-200">
-                Actions
-              </th>
-            </tr>
-          </thead>
-
-          <tbody className="divide-y divide-gray-200 dark:divide-slate-700">
-            {borrows.length === 0 ? (
-              <tr>
-                <td
-                  colSpan="5"
-                  className="py-8 text-center text-gray-500 dark:text-slate-400"
-                >
-                  No borrowed books found.
-                </td>
-              </tr>
-            ) : (
-              borrows.map((borrow) => (
-                <tr
-                  key={borrow._id}
-                  className="border-b transition hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-700/50"
-                >
-                  <td className="px-4 py-3 font-medium text-slate-800 dark:text-slate-100">
-                    {borrow.book?.title}
-                  </td>
-
-                  <td className="px-4 py-3 text-gray-700 dark:text-slate-300">
-                    {new Date(borrow.borrowDate).toLocaleDateString()}
-                  </td>
-
-                  <td className="px-4 py-3 text-gray-700 dark:text-slate-300">
-                    {new Date(borrow.dueDate).toLocaleDateString()}
-                  </td>
-
-                  {/* Status Cell */}
-                  <td className="px-4 py-3">
-                    <span
-                      className={`inline-block rounded px-2.5 py-1 text-xs font-semibold ${
-                        borrow.status === "borrowed"
-                          ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-300"
-                          : "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300"
-                      }`}
-                    >
-                      {borrow.status}
-                    </span>
-                  </td>
-
-                  {/* Action Cell */}
-                  <td className="px-4 py-3">
-                    {borrow.status === "borrowed" && (
-                      <button
-                        onClick={() => handleReturn(borrow._id)}
-                        className="rounded bg-red-600 px-3 py-1 text-sm text-white transition hover:bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
-                      >
-                        Return
-                      </button>
-                    )}
-                  </td>
+      {borrows.length === 0 ? (
+        <EmptyState
+          icon={<FaBookOpen />}
+          title="No Borrowed Books"
+          description="You haven't borrowed any books yet. Explore the catalog to get started."
+        />
+      ) : (
+        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div className="overflow-x-auto">
+            <table className="min-w-full">
+              <thead className="bg-slate-50 dark:bg-slate-800/60">
+                <tr>
+                  <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Book
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Borrow Date
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Due Date
+                  </th>
+                  <th className="px-6 py-4 text-left text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Status
+                  </th>
+                  <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    Actions
+                  </th>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+                {borrows.map((borrow) => {
+                  const isOverdue =
+                    borrow.status === "borrowed" &&
+                    new Date(borrow.dueDate) < new Date();
+
+                  return (
+                    <tr
+                      key={borrow._id}
+                      className="transition hover:bg-slate-50 dark:hover:bg-slate-800/40"
+                    >
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400">
+                            <FaBookOpen />
+                          </div>
+                          <span className="font-medium text-slate-800 dark:text-slate-100">
+                            {borrow.book?.title}
+                          </span>
+                        </div>
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
+                        {new Date(borrow.borrowDate).toLocaleDateString()}
+                      </td>
+
+                      <td className="px-6 py-4 text-sm text-slate-500 dark:text-slate-400">
+                        {new Date(borrow.dueDate).toLocaleDateString()}
+                      </td>
+
+                      <td className="px-6 py-4">
+                        <StatusBadge status={isOverdue ? "overdue" : borrow.status} />
+                      </td>
+
+                      <td className="px-6 py-4 text-right">
+                        {borrow.status === "borrowed" && (
+                          <button
+                            onClick={() => handleReturn(borrow._id)}
+                            disabled={returningId === borrow._id}
+                            className="inline-flex items-center gap-2 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
+                          >
+                            {returningId === borrow._id ? (
+                              <Spinner size="sm" className="border-white" />
+                            ) : (
+                              <FaUndo />
+                            )}
+                            Return
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
