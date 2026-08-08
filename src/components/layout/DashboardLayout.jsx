@@ -3,7 +3,6 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaBook, FaChartPie, FaBookReader, FaUserCircle } from "react-icons/fa";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
-import Footer from "./Footer";
 
 function BottomNav() {
   const items = [
@@ -62,9 +61,6 @@ function DashboardLayout() {
             <Outlet />
           </div>
         </main>
-
-        {/* Footer */}
-        <Footer />
       </div>
 
       {/* Mobile Bottom Navigation */}

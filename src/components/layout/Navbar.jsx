@@ -5,14 +5,11 @@ import {
   FaUserCircle,
   FaBell,
   FaSearch,
-  FaMoon,
-  FaSun,
   FaBars,
   FaTimes,
   FaUser,
 } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
-import useTheme from "../../hooks/useTheme";
 import { Link } from "react-router-dom";
 
 const PAGE_TITLES = {
@@ -33,7 +30,6 @@ function getPageTitle(pathname) {
 
 function Navbar({ onMenuToggle }) {
   const { user, logout } = useAuth();
-  const { darkMode, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -144,20 +140,7 @@ function Navbar({ onMenuToggle }) {
               <FaSearch size={16} />
             </button>
 
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle Theme"
-              className="rounded-xl bg-slate-100 p-2.5 sm:p-3 text-slate-700 transition hover:bg-slate-200 active:scale-95 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"
-            >
-              {darkMode ? (
-                <FaSun size={16} className="text-yellow-400" />
-              ) : (
-                <FaMoon size={16} className="text-slate-600" />
-              )}
-            </button>
-
-            {/* Notifications */}
+{/* Notifications */}
             <button
               aria-label="Notifications"
               className="relative rounded-xl bg-slate-100 p-2.5 sm:p-3 text-slate-700 transition hover:bg-slate-200 active:scale-95 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700"

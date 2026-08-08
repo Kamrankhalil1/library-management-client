@@ -5,8 +5,6 @@ import {
   FaExchangeAlt,
   FaChartBar,
   FaArrowRight,
-  FaGithub,
-  FaLinkedin,
   FaCheckCircle,
   FaClock,
 } from "react-icons/fa";
@@ -200,52 +198,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Landing Footer */}
-      <footer className="bg-white py-10 dark:bg-slate-950 sm:py-14">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 text-center sm:px-6 md:flex-row md:text-left lg:px-8">
-          
-          <div>
-            <div className="flex items-center justify-center gap-2.5 md:justify-start">
-              <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600 text-xs text-white shadow-md shadow-blue-500/20 sm:h-9 sm:w-9 sm:text-sm">
-                📚
-              </span>
-              <h3 className="text-base font-bold sm:text-xl">Library Management System</h3>
-            </div>
-            <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400 sm:text-sm">
-              Built with React, Express, Node.js, and MongoDB.
-            </p>
-          </div>
-
-          {/* Social Icons */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            <a
-              href="https://github.com/Kamrankhalil1/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-xl text-slate-600 transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-slate-900 hover:text-white dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 sm:h-12 sm:w-12 sm:rounded-2xl sm:text-2xl"
-              aria-label="GitHub"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/kamran-khalil-950963266/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-xl text-slate-600 transition-all duration-300 hover:-translate-y-1 hover:scale-110 hover:bg-[#0A66C2] hover:text-white dark:bg-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 sm:h-12 sm:w-12 sm:rounded-2xl sm:text-2xl"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin />
-            </a>
-          </div>
-
-        </div>
-
-        <div className="mt-8 border-t border-slate-100 pt-6 text-center text-xs font-medium text-slate-400 dark:border-slate-900 dark:text-slate-600 sm:mt-12 sm:pt-8">
-          © {new Date().getFullYear()} Library Management System. All Rights Reserved.
-        </div>
-      </footer>
-
-    </div>
+</div>
   );
 }
 

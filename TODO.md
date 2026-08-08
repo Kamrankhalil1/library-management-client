@@ -23,5 +23,11 @@ Feature Pages:
 - [x] CreateBook - consistent modern form
 - [x] EditBook - consistent modern form
 
+Feedback Additions (remove footer & dark/light toggle):
+- [x] DashboardLayout - removed Footer component
+- [x] Home landing page - removed footer + social icons
+- [x] Navbar - removed dark/light theme toggle button
+- [x] ThemeContext - enforced single light theme (removed toggle functionality)
+
 Testing:
-- [x] Run build to verify no errors
+- [x] Run build to verify no errors (199 modules, build successful)

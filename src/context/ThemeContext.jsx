@@ -1,36 +1,21 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect } from "react";
 
 export const ThemeContext = createContext();
 
+// The app uses a single, polished light theme. Dark mode classes
+// remain for code robustness, but the UI is fixed to light mode.
 function ThemeProvider({ children }) {
-  const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "dark";
-  });
-
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
-
-  const toggleTheme = () => {
-    setDarkMode((prev) => !prev);
-  };
+    document.documentElement.classList.remove("dark");
+    localStorage.setItem("theme", "light");
+  }, []);
 
   return (
-    <ThemeContext.Provider
-      value={{
-        darkMode,
-        toggleTheme,
-      }}
-    >
+    <ThemeContext.Provider value={{ darkMode: false, toggleTheme: () => {} }}>
       {children}
     </ThemeContext.Provider>
   );
 }
 
 export default ThemeProvider;
+
